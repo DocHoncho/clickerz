@@ -1,5 +1,7 @@
 <div class="panel panel-primary{% if this.attrs.class %} {{ this.attrs.class }}{% endif %}">
+  {% if this.title %}
   <div class="panel-heading"><h2>{{ this.title }}</h2></div>
+  {% endif %}
   <div class="panel-body">
     <div class="page-content">
     </div>
