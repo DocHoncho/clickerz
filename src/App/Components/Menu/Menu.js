@@ -11,12 +11,14 @@ var MenuBar = function (title, items) {
   }
 };
 
-MenuBar.prototype.render = function () {
+MenuBar.prototype.render = function (root) {
   const template = require('./Menu.twig');
-  return template({
+  var $html = template({
     title: this.title,
     items: this.items
   });
+
+  root.append($html);
 };
 
 MenuBar.prototype.addItem = function (name, item, index) {
@@ -32,10 +34,6 @@ MenuBar.prototype.addItems = function (items) {
     this.addItem(i[0], i[1], i[2]);
   });
 };
-
-Twig.extendFunction('render', function (value) {
-  return value.render();
-});
 
 module.exports = {
   MenuBar: MenuBar
