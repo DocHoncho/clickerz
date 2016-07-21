@@ -29,10 +29,11 @@ TabbedPage.prototype.render = function (root) {
 
   let template = require('./TabbedPage.twig');
   var $html = $(template({this: this}));
+
   var $content_root = $html.filter('.page-tabs');
   this.tabs.render($content_root);
 
-  $base_root.before($html);
+  $base_root.replaceWith($html);
 
   root.append($base_html.html());
 };
