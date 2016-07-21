@@ -14,17 +14,12 @@ const SurvivorPage = function () {
 
 };
 
-var render = (fn, obj, context) => {
-  let template = require(fn);
-
-  return template(_.merge({this: obj}, context));
-};
-
 SurvivorPage.prototype.render = function (root) {
-  var html = render('./Templates/SurvivorPage.twig', this, {});;
+  let template = require('./Templates/SurvivorPage.twig');
+  var html = template({this: this});
 
   if (root) {
-    var $html = $(html);;
+    var $html = $(html);
     root.append($html);
   }
 

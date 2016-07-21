@@ -24,23 +24,26 @@ const TabPage = function (name, title, args) {
   };
 
   _.assignIn(this, defaults, _.pick(args, _.keys(defaults)));
-  console.log(this);
 };
 
 /**
  * Render the Page
  * @returns {*}
  */
+
 TabPage.prototype.render = function (root) {
-  const template = require('./Templates/TabPage.twig');
-  var $root_html = $(template({
-    this: this
-  }));
+  var $pageHtml = $(require('./Templates/TabPage.twig')({this: this}));
+  var $panelBody = $pageHtml.find('.panel-body');
 
-  var $inner_html = $root_html.find('.panel-body');
-  this.renderer($inner_html);
+  if (this.page) {
+    this.page.render($panelBody);
+  } else if (this.renderer) {
+    this.renderer($panelBody);
+  } else {
+    alert('I screamed because I didn\'t know what else to do!');
+  }
 
-  root.append($root_html);
+  root.append($pageHtml);
 };
 
 module.exports = TabPage;

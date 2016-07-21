@@ -2,8 +2,10 @@ const Game = require('../Game/Game');
 const Menu = require('./Components/Menu/Menu');
 
 const TabManager = require('./Components/Tabs/TabManager');
+const TabPage = require('./Components/Tabs/TabPage');
 const SurvivorPage = require('./Pages/SurvivorPage.js');
 const GroupPage = require('./Pages/GroupPage.js');
+const TemplatePage = require('./Pages/TemplatePage');
 
 const ENV = {
   APP_TITLE: 'ClickerZ Demo App',
@@ -40,20 +42,18 @@ var App = function () {
     }, 1]
   ]);
 
-  this.pages =
-
   this.tabManager = new TabManager([
     new TabPage('survivor-tab', 'Survivor', {
       page: new SurvivorPage()
     }),
     new TabPage('group-tab', 'Group', {
-      page: new SurvivorPage()
+      page: new GroupPage()
     }),
     new TabPage('camp-tab', 'Camp', {
-      page: new TemplatePage('./Templates/stub.twig')
+      page: new TemplatePage(require('./Pages/Templates/StubPage.twig'), this)
     }),
     new TabPage('stats-tab', 'Camp', {
-      renderer: { render: function (root) { root.append($('<h1>Stub</h1>')); } }
+      renderer: function (root) { root.append($('<h1>Stub</h1>')); }
     })
   ]);
 
@@ -67,9 +67,7 @@ App.prototype.run = function () {
 App.prototype.render = function (root) {
   var template = require('./App.twig');
   var context = {
-    ENV: ENV,
-    MenuBar: this.menuBar,
-    TabManager: this.tabManager
+    ENV: ENV
   };
 
   var $html = $(template(context));

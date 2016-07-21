@@ -35,21 +35,13 @@ TabManager.prototype.activateTab = function (name) {
 };
 
 TabManager.prototype.render = function (root) {
-  const template = require('./Templates/TabManager.twig');
-
-  var $root_html = $(template({
-    this: this
-  }));
-
-  var $tab_content = $root_html.children('.tab-content');
-  const page_template = require('./Templates/TabPage.twig');
+  var $baseHtml = $(require('./Templates/TabManager.twig')({this: this}));
+  var $tab_content = $baseHtml.children('.tab-content');
   _.each(this.tabs, (tab) => {
-    var $tab_html = $(page_template({this: tab}));
-    tab.renderer($tab_html.find('.panel-body'));
-    $tab_content.append($tab_html);
+    tab.render($tab_content);
   });
 
-  root.append($root_html);
+  root.append($baseHtml);
 };
 
 module.exports = TabManager;
