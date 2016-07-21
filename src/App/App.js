@@ -3,9 +3,11 @@ const Menu = require('./Components/Menu/Menu');
 
 const TabManager = require('./Components/Tabs/TabManager');
 const TabPage = require('./Components/Tabs/TabPage');
-const SurvivorPage = require('./Pages/SurvivorPage.js');
-const GroupPage = require('./Pages/GroupPage.js');
-const TemplatePage = require('./Pages/TemplatePage');
+const SurvivorPage = require('./Pages/SurvivorPage/SurvivorPage.js');
+const GroupPage = require('./Pages/GroupPage/GroupPage.js');
+const TemplatePage = require('./Pages/TemplatePage/TemplatePage');
+
+require('./App.scss');
 
 const ENV = {
   APP_TITLE: 'ClickerZ Demo App',
@@ -44,7 +46,7 @@ var App = function () {
 
   this.tabManager = new TabManager([
     new TabPage('survivor-tab', 'Survivor', {
-      page: new SurvivorPage()
+      page: new SurvivorPage({})
     }),
     new TabPage('group-tab', 'Group', {
       page: new GroupPage()

@@ -1,13 +1,8 @@
-<div class="container-fluid tab-container">
-  <!-- Nav tabs -->
-  <ul class="nav nav-pills" role="tablist">
-    {% for tab in this.tabs %}
-      <li role="presentation"{% if tab.active %} class="active"{% endif %}>
-        <a href="#{{ tab.name }}" aria-controls="{{ tab.name }}" role="tab" data-toggle="pill">{{ tab.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content"></div>
-</div>
+<ul class="nav nav-pills" role="tablist">
+  {% for tab in this.tabs %}
+    <li role="presentation"{% if tab.active %} class="active"{% endif %}>
+      <a href="#{{ tab.name }}" aria-controls="{{ tab.name }}" role="tab" data-toggle="pill">{{ tab.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+<div class="tab-content"></div>

@@ -5,6 +5,7 @@ const _ = require('lodash');
  *
  * Intended as base layer upon which more complicated pages will build
  *
+ * @param name TabPage name
  * @param title Page title
  * @param args Modify default arguments
  * @constructor
@@ -28,17 +29,19 @@ const TabPage = function (name, title, args) {
 
 /**
  * Render the Page
+ *
+ * @param {jQuery} root Jquery object for root at which to insert new nodes
  * @returns {*}
  */
 
 TabPage.prototype.render = function (root) {
   var $pageHtml = $(require('./Templates/TabPage.twig')({this: this}));
-  var $panelBody = $pageHtml.find('.panel-body');
+  //var $panelBody = $pageHtml.find('.panel-body');
 
   if (this.page) {
-    this.page.render($panelBody);
+    this.page.render($pageHtml);
   } else if (this.renderer) {
-    this.renderer($panelBody);
+    this.renderer($pageHtml);
   } else {
     alert('I screamed because I didn\'t know what else to do!');
   }

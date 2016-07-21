@@ -1,0 +1,28 @@
+@import '../../../../scss/Global';
+
+.page-tabs {
+  width: 100%;
+  margin: 0;
+
+  .nav-pills {
+    background-color: $primary-color-dark;
+    color: white;
+
+    > li {
+      position: relative;
+      display: block;
+
+      > a {
+        color: white;
+        position: relative;
+        display: block;
+        padding: $nav-link-padding;
+        &:hover,
+        &:focus {
+          text-decoration: none;
+          background-color: lighten($primary-color-dark, 25%);
+        }
+      }
+    }
+  }
+}
