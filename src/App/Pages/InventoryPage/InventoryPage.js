@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const TabPage = require('../Components/Tabs/TabPage');
+const TabPage = require('../../Components/Tabs/TabPage');
 
 /**
  *
@@ -10,7 +10,7 @@ const InventoryPage = function () {
 
 };
 
-_.extend(SurvivorPage.prototype, TabPage.prototype);
+_.extend(InventoryPage.prototype, TabPage.prototype);
 
 InventoryPage.prototype.render = function () {
 
