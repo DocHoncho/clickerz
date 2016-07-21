@@ -1,6 +1,10 @@
 const Game = require('../Game/Game');
 const Menu = require('./Components/Menu/Menu');
 
+const TabManager = require('./Components/Tabs/TabManager');
+const SurvivorPage = require('./Pages/SurvivorPage.js');
+const GroupPage = require('./Pages/GroupPage.js');
+
 const ENV = {
   APP_TITLE: 'ClickerZ Demo App',
   APP_AUTHOR: 'Joel Madigan',
@@ -35,19 +39,51 @@ var App = function () {
       ]
     }, 1]
   ]);
+
+  this.pages =
+
+  this.tabManager = new TabManager([
+    new TabPage('survivor-tab', 'Survivor', {
+      page: new SurvivorPage()
+    }),
+    new TabPage('group-tab', 'Group', {
+      page: new SurvivorPage()
+    }),
+    new TabPage('camp-tab', 'Camp', {
+      page: new TemplatePage('./Templates/stub.twig')
+    }),
+    new TabPage('stats-tab', 'Camp', {
+      renderer: { render: function (root) { root.append($('<h1>Stub</h1>')); } }
+    })
+  ]);
+
+  this.tabManager.activateTab('survivor-tab');
 };
 
 App.prototype.run = function () {
   Game.run();
 };
 
-App.prototype.render = function () {
-  var template = require('./Templates/index.twig');
+App.prototype.render = function (root) {
+  var template = require('./App.twig');
   var context = {
     ENV: ENV,
     MenuBar: this.menuBar,
+    TabManager: this.tabManager
   };
-  return template(context);
+
+  var $html = $(template(context));
+  this.menuBar.render($html.filter('#topNav'));
+  this.tabManager.render($html.filter('#tabs'));
+
+  root.html($html);
 };
+
+const Twig = require('twig');
+
+Twig.extendFunction('render', function (value) {
+  console.log(value);
+  return value.render();
+});
 
 module.exports = App;

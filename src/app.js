@@ -6,5 +6,5 @@ require('./scss/main.scss');
 const App = require('./App/App');
 
 var app = new App();
-$('#root').html(app.render());
+app.render($('#root'));
 app.run();
