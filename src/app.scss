@@ -1,0 +1,14 @@
+@import 'scss/Global';
+
+.foo {
+	background-color: green;
+}
+
+.panel-heading {
+  border-radius: 0;
+	h2 {
+		padding: 0;
+		margin: 0;
+	}
+}
+
