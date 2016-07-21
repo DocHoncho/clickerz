@@ -1,0 +1,17 @@
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import 'palette';
+@import 'bootstrap-variables';
+
+@import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
+.foo {
+	background-color: green;
+}
+
+.panel-heading {
+  border-radius: 0;
+	h2 {
+		padding: 0;
+		margin: 0;
+	}
+}
