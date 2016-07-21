@@ -1,10 +1,11 @@
-var Random = require('./Random');
+const _ = require('lodash');
+const Random = require('./Random');
 
 /**
  * Implements a weighted pool where items have a specified chance of being chosen.
  * 
- * Pool may be initialized with a list of tuples, [callback, chance] where chance is a number between 0 and 1
- * which is interpreted as an n in m chance of occuring.
+ * Pool may be initialized with a list of [callback, chance] where chance is a number between 0 and 1
+ * which is interpreted as an n in m chance of occurring.
  * Set chance to null to let that item's chance be set according to the chances of other items in the pool.
  * Any space left from items added to the pool with specific chances is divided equally to all items with a null chance.
  * 
