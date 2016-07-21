@@ -53,7 +53,7 @@ config.sassLoader = {
 config.module.loaders.push({ test: /\.twig$/, loader: "twig-loader" });
 config.devtool = '#inline-source-map';
 // Roots
-config.resolve.root = [src, modules]
+config.resolve.root = [src, modules];
 config.resolve.alias = {
   'Core': join(src, 'Core'),
   'css': join(src, 'styles'),
@@ -62,6 +62,6 @@ config.resolve.alias = {
   'utils': join(src, 'utils'),
 
   'styles': join(src, 'styles')
-}
+};
 // end Roots
 module.exports = config;

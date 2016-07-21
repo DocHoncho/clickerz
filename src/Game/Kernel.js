@@ -9,7 +9,7 @@ function DuplicateTimerException (message) {
 var Kernel = function (opts) {
   this.timers = {};
   this.dispatchers = {};
-}
+};
 
 Kernel.prototype.addTimer = function (name, rate, start=false) {
   var handler = () => this.tickHandler(name);
@@ -29,7 +29,7 @@ Kernel.prototype.addTimer = function (name, rate, start=false) {
   }
 
   return this;
-}
+};
 
 Kernel.prototype.removeTimer = function (name) {
   this.timers[name].stop();
@@ -38,27 +38,27 @@ Kernel.prototype.removeTimer = function (name) {
   this.removeDispatcher(name + '-tick');
 
   return this;
-}
+};
 
 Kernel.prototype.getTimer = function (name) {
   return this.timers[name];
-}
+};
 
 Kernel.prototype.tickHandler = function (timerName, tick) {
   this.dispatch(timerName + '-tick', 'tick');
-}
+};
 
 Kernel.prototype.addDispatcher = function (name) {
   this.dispatchers[name] = [];
 
   return this;
-}
+};
 
 Kernel.prototype.removeDispatcher = function (name) {
   delete this.dispatchers[name];
 
   return this;
-}
+};
 
 Kernel.prototype.addListener = function (dispatcher, name, callback) {
   if (!this.dispatchers.hasOwnProperty(dispatcher)) {
@@ -66,7 +66,7 @@ Kernel.prototype.addListener = function (dispatcher, name, callback) {
   }
 
   this.dispatchers[dispatcher].push({name: name, callback: callback});
-}
+};
 
 Kernel.prototype.removeListener = function (dispatcher, name) {
   if (!this.dispatchers.hasOwnProperty(dispatcher)) {
@@ -81,7 +81,7 @@ Kernel.prototype.removeListener = function (dispatcher, name) {
   }
 
   disp.listeners.splice(idx, 1);
-}
+};
 
 Kernel.prototype.on = function (event, callback) {
   if (this.dispatchers.hasOwnProperty(event)) {
@@ -92,14 +92,14 @@ Kernel.prototype.on = function (event, callback) {
   }
 
   return this;
-}
+};
 
 Kernel.prototype.dispatch = function (dispatcher, ...args) {
   var d = this.dispatchers[dispatcher];
   _.forOwn(d, function (obj, name) {
     obj.callback(args);
   });
-}
+};
 
 let _kernel = new Kernel();
 

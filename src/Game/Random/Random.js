@@ -1,9 +1,9 @@
 const _ = require('lodash');
-const randomjs = require('random-js');
+const RandomJS = require('random-js');
 
 var MakeRandom = function (seed, engine) {
   if (_.isEmpty(engine)) {
-    engine = randomjs.engines.mt19937();
+    engine = RandomJS.engines.mt19937();
   }
 
   if (!_.isEmpty(seed)) {
@@ -13,12 +13,12 @@ var MakeRandom = function (seed, engine) {
     engine.seed(seed);
   }
 
-  return new randomjs(engine);
-}
+  return new RandomJS(engine);
+};
 
 var Random = MakeRandom();
 
 module.exports = {
   Random: Random,
-  MakeRandom: MakeRandom,
-}
+  MakeRandom: MakeRandom
+};

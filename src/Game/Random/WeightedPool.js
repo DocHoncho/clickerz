@@ -15,16 +15,15 @@ var Random = require('./Random');
  */
 var WeightedPool = function (pool) {
   this.pool = [];
-  _.each(pool, (obj) => {this.addItem(obj, false)});
-  });
+  _.each(pool, (obj) => { this.addItem(obj, false); });
 
   this.updatePool();
-}
+};
 
 /**
  * Pick a random item from the pool
  *
- * @return {Function} pool entry object
+ * @return {Object} pool entry object
  */
 WeightedPool.prototype.choose = function () {
   var t = Random.integer(0, 100) / 100;
@@ -35,8 +34,8 @@ WeightedPool.prototype.choose = function () {
     }
   }
 
-  return "Something really shitty happened"
-}
+  return "Something really shitty happened";
+};
 
 /**
  * Update pool items, setting chance on all auto chance items.
@@ -57,7 +56,7 @@ WeightedPool.prototype.updatePool = function () {
       value.range = {
         low: total,
         high: total + value.chance
-      }
+      };
       total += value.baseChance;
     }
 
@@ -71,7 +70,7 @@ WeightedPool.prototype.updatePool = function () {
     value.range = {
       low: total,
       high: total + fill
-    }
+    };
 
     total += fill;
   });
@@ -79,13 +78,12 @@ WeightedPool.prototype.updatePool = function () {
   this.pool = _.sortBy(this.pool, (i) => {
     return i.range.high;
   });
-}
+};
 
 /** 
  * Add item to pool.
  *
- * @param {Function} callback - Callback to be called if pool item is chosen.
- * @param {Number} chance - Number between 0 and 1 denoting chance pool item may be chosen
+ * @param {Object} obj - Basic object with callback and chance attributes.
  * @param {Boolean} updatePool - Set to false to suppress updating the pool (must updatePool manually!)
  */
 WeightedPool.prototype.addItem = function (obj, updatePool=true) {
@@ -108,12 +106,12 @@ WeightedPool.prototype.addItem = function (obj, updatePool=true) {
   if (updatePool) {
     this.updatePool();    
   }
-}
+};
 
 /**
  * Add multiple items to pool.
  *
- * @param {Array] items - Array of {callback: x, chance: y} entries
+ * @param {Array} items - Array of {callback: x, chance: y} entries
  */
 WeightedPool.prototype.addItems = function (items) {
   _.each(items, (i) => {
@@ -121,7 +119,7 @@ WeightedPool.prototype.addItems = function (items) {
   });
 
   this.updatePool();
-}
+};
 
 /**
  * Return number of items in pool
@@ -130,6 +128,6 @@ WeightedPool.prototype.addItems = function (items) {
  */
 WeightedPool.prototype.size = function () {
   return this.pool.length;
-}
+};
 
 module.exports = WeightedPool;
