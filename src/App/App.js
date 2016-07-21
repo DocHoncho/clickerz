@@ -1,4 +1,4 @@
-const Game = require('Game/Game');
+const Game = require('../Game/Game');
 const Menu = require('./Components/Menu/Menu');
 
 const ENV = {

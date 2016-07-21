@@ -1,8 +1,9 @@
 const moment = require('moment');
-const Kernel = require('./Kernel');
 const _ = require('lodash');
 
-const env = require('Game/Constants');
+const Kernel = require('./Kernel');
+const env = require('./Constants');
+
 var World = function (args) {
   const defaults = {
     beat: 0

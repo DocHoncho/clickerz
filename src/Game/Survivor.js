@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const moment = require('moment');
-const env = require('Game/Constants');
+const env = require('./Constants');
 
 const Survivor = function (args) {
   const defaults = {

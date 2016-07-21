@@ -1,9 +1,9 @@
 const _ = require('lodash');
 
-const Kernel = require('Game/Kernel');
-const World = require('Game/World');
-const Random = require('Game/Random/Random');
-const Survivor = require('Game/Survivor');
+const Kernel = require('./Kernel');
+const World = require('./World');
+const Random = require('./Random/Random');
+const Survivor = require('./Survivor');
 
 const OPTIONS = {
   ticksPerSecond: 30
